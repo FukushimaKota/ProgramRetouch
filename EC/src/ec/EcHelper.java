@@ -68,7 +68,7 @@ public class EcHelper {
 		return total;
 	}
 
-	/**つまり暗号化
+	/**
 	 * ハッシュ関数
 	 *
 	 * @param target
