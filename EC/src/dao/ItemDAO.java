@@ -117,16 +117,22 @@ public class ItemDAO {
 				st = con.prepareStatement("SELECT * FROM m_item ORDER BY id ASC LIMIT ?,? ");
 				st.setInt(1, startiItemNum);
 				st.setInt(2, pageMaxItemCount);
-			}else {
-				//id <> 1 AND name LIKE '%"+searchWord+"%'";
 
-				//name = ?  ORDER BY id ASC LIMIT ?,? "
-				// 商品名検索
-				st = con.prepareStatement("SELECT * FROM m_item WHERE name = ?  ORDER BY id ASC LIMIT ?,? ");
-				st.setString(1,searchWord);//name
-				st.setInt(2, startiItemNum);//limit1
-				st.setInt(3, pageMaxItemCount);//limit2
+//			}else if(searchWord.length() >=1){
+				// 商品名検索   sqlで動く
+			}else {
+			//st = con.prepareStatement("SELECT * FROM m_item WHERE name LIKE '%serchWord%' ORDER BY id ASC LIMIT ?,? ");
+				st = con.prepareStatement("SELECT * FROM m_item WHERE name LIKE '%"+searchWord+"%' ORDER BY id ASC LIMIT ?,? ");
+				st.setInt(1, startiItemNum);
+				st.setInt(2, pageMaxItemCount);
 			}
+
+//			}else {
+//				st = con.prepareStatement("SELECT * FROM m_item WHERE name = ?  ORDER BY id ASC LIMIT ?,? ");
+//				st.setString(1,searchWord);
+//				st.setInt(2, startiItemNum);
+//				st.setInt(3, pageMaxItemCount);
+//			}
 
 			ResultSet rs = st.executeQuery();
 			ArrayList<ItemDataBeans> itemList = new ArrayList<ItemDataBeans>();
